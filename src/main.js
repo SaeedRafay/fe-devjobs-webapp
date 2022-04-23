@@ -1,4 +1,20 @@
 import { createApp } from 'vue'
+import { createStore } from 'vuex'
+
+import data from '../data.json'
+
 import App from './App.vue'
 
-createApp(App).mount('#app')
+const store = createStore({
+  state() {
+    return {
+      jobs: data,
+    }
+  },
+})
+
+const app = createApp(App)
+
+app.use(store)
+
+app.mount('#app')

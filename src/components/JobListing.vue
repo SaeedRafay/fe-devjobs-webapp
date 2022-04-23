@@ -7,7 +7,6 @@
 
 <script>
 import JobCard from "./JobCard.vue";
-import data from "../../data.json";
 
 export default {
   name: "JobListing",
@@ -16,7 +15,7 @@ export default {
   },
   data() {
     return {
-      jobs: data,
+      jobs: this.$store.state.jobs,
     };
   },
 };
