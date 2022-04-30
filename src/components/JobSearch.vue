@@ -86,6 +86,7 @@ export default {
   width: 24px;
   background-color: rgba(25, 32, 45, 0.1);
   border-radius: 3px;
+  transition: background-color 0.4s;
 }
 #app .searchFulltime:hover input ~ .checkmark {
   background-color: rgba(25, 32, 45, 0.3);
