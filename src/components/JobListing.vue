@@ -1,16 +1,24 @@
 <template>
+  <JobSearch />
   <div class="jobListing">
-    <JobCard v-for="job in jobs" :key="job.id" :job="job" />
+    <JobCard
+      v-for="job in jobs"
+      :key="job.id"
+      :job="job"
+      @click="$router.push('/job/' + job.id)"
+    />
     <button class="jobMore">Load More</button>
   </div>
 </template>
 
 <script>
+import JobSearch from "./JobSearch.vue";
 import JobCard from "./JobCard.vue";
 
 export default {
   name: "JobListing",
   components: {
+    JobSearch,
     JobCard,
   },
   data() {

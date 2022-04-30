@@ -23,15 +23,19 @@ export default {
 </script>
 
 <style scoped>
-body.darkMode #app .jobListing .jobCard {
-  background: var(--color-primary-dark-blue);
-}
 #app .jobListing .jobCard {
   margin: 25px 0 0;
   padding: 45px 32px 30px;
   background: var(--color-secondary-white);
   border-radius: 6px;
   position: relative;
+  cursor: pointer;
+}
+body.darkMode #app .jobListing .jobCard {
+  background: var(--color-primary-dark-blue);
+}
+#app .jobListing .jobCard:hover h3 {
+  color: var(--color-secondary-dark-grey);
 }
 #app .jobCard .jobLogo {
   width: 50px;
