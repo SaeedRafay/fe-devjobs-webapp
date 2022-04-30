@@ -4,7 +4,7 @@
       <img src="../assets/logo.svg" />
     </div>
     <label class="modeSwitch">
-      <input type="checkbox" />
+      <input type="checkbox" v-model="modeSwitch" />
       <span class="slider round"></span>
     </label>
   </header>
@@ -13,6 +13,20 @@
 <script>
 export default {
   name: "LayoutHeader",
+  data() {
+    return {
+      modeSwitch: false,
+    };
+  },
+  watch: {
+    modeSwitch(newValue) {
+      if (newValue) {
+        document.querySelector("body").classList.add("darkMode");
+      } else {
+        document.querySelector("body").classList.remove("darkMode");
+      }
+    },
+  },
 };
 </script>
 
@@ -22,6 +36,9 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+#app header .logo {
+  margin-top: 10px;
 }
 #app header .modeSwitch {
   position: relative;

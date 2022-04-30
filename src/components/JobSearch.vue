@@ -34,6 +34,9 @@ export default {
   margin: 0 0 80px;
   position: relative;
 }
+body.darkMode #app .jobSearch {
+  background: var(--color-primary-dark-blue);
+}
 #app .jobSearch input[type="text"] {
   border: 0;
   padding: 0;
@@ -45,6 +48,9 @@ export default {
   font: var(--font-body) var(--font-family);
   color: var(--color-primary-dark-blue);
   border-right: 1px solid rgba(110, 128, 152, 0.2);
+}
+body.darkMode #app .jobSearch input[type="text"] {
+  color: var(--color-secondary-white);
 }
 #app .jobSearch input[type="text"].searchTerm {
   margin: 0 0 0 32px;
@@ -91,9 +97,15 @@ export default {
 #app .searchFulltime:hover input ~ .checkmark {
   background-color: rgba(25, 32, 45, 0.3);
 }
+body.darkMode #app .searchFulltime .checkmark {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+body.darkMode #app .searchFulltime:hover input ~ .checkmark {
+  background-color: rgba(255, 255, 255, 0.3);
+}
 #app .searchFulltime input:checked ~ .checkmark {
   background: url("../assets/icon-check.svg") no-repeat center center
-    var(--color-primary-violet);
+    var(--color-primary-violet) !important;
 }
 #app .jobSearch button {
   position: absolute;

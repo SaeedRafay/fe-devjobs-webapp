@@ -44,6 +44,10 @@ body {
   font: var(--font-body) var(--font-family);
   color: var(--color-primary-dark-blue);
 }
+body.darkMode {
+  background: var(--color-primary-midnight);
+  color: var(--color-secondary-white);
+}
 body::before {
   content: " ";
   background: url("./assets/bg-pattern-header.svg") no-repeat;

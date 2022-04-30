@@ -23,6 +23,9 @@ export default {
 </script>
 
 <style scoped>
+body.darkMode #app .jobListing .jobCard {
+  background: var(--color-primary-dark-blue);
+}
 #app .jobListing .jobCard {
   margin: 25px 0 0;
   padding: 45px 32px 30px;
