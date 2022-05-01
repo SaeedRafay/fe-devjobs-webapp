@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="logo">
-      <img src="../assets/logo.svg" />
+      <img @click="$router.push('/')" src="../assets/logo.svg" />
     </div>
     <label class="modeSwitch">
       <input type="checkbox" v-model="modeSwitch" />
@@ -39,6 +39,7 @@ export default {
 }
 #app header .logo {
   margin-top: 10px;
+  cursor: pointer;
 }
 #app header .modeSwitch {
   position: relative;

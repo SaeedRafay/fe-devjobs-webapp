@@ -75,7 +75,8 @@ body::after {
 #app h1,
 #app h2,
 #app h3,
-#app h4 {
+#app h4,
+#app p {
   margin: 0;
 }
 #app h1 {
@@ -102,5 +103,12 @@ body::after {
 }
 #app button:hover {
   background: var(--color-primary-light-violet);
+}
+#app button.btnSecondary {
+  color: var(--color-primary-violet);
+  background: rgba(89, 100, 224, 0.1);
+}
+#app button.btnSecondary:hover {
+  background: rgba(89, 100, 224, 0.35);
 }
 </style>

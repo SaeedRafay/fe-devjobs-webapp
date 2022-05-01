@@ -64,7 +64,7 @@ body.darkMode #app .jobListing .jobCard {
 #app .jobCard h3 {
   margin: 8px 0;
 }
-#app .jobLocation {
+#app .jobCard .jobLocation {
   margin: 34px 0 0;
   font-size: 14px;
   font-weight: 700;
