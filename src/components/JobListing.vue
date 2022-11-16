@@ -7,7 +7,9 @@
       :job="job"
       @click="$router.push('/job/' + job.id)"
     />
-    <button class="jobMore">Load More</button>
+    <button class="jobMore" @click="loadMoreJobs" :disabled="loadMoreDisabled">
+      Load More
+    </button>
   </div>
 </template>
 
@@ -23,8 +25,42 @@ export default {
   },
   data() {
     return {
-      jobs: this.$store.state.jobs,
+      // jobs: this.$store.state.jobs,
+      loadMoreDisabled: false,
+      page: 0,
+      jobs: [],
     };
+  },
+  mounted() {
+    fetch("http://localhost:3000/jobs?_page=1&_limit=5")
+      .then((res) => res.json())
+      .then((data) => {
+        this.jobs = data;
+        this.page++;
+      })
+      .catch((err) => console.log(err.json));
+  },
+  methods: {
+    loadMoreJobs() {
+      fetch(
+        "http://localhost:3000/jobs?_page=" +
+          parseInt(this.page + 1) +
+          "&_limit=5"
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          this.jobs = this.jobs.concat(data);
+          this.page++;
+
+          if (data.length < 5) {
+            this.loadMoreDisabled = true;
+          }
+          if (data.length == 0) {
+            console.log("No more jobs founds");
+          }
+        })
+        .catch((err) => console.log(err.json));
+    },
   },
 };
 </script>
@@ -40,5 +76,8 @@ export default {
 #app .jobMore {
   grid-column: span 3;
   margin: 26px auto 0px;
+}
+#app .jobMore:disabled {
+  display: none;
 }
 </style>
