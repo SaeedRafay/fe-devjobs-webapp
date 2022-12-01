@@ -40,6 +40,11 @@ export default {
       })
       .catch((err) => console.log(err.json));
   },
+  watch: {
+    jobs(newJobs, oldJobs) {
+      this.$store.state.jobs = oldJobs.concat(newJobs);
+    },
+  },
   methods: {
     loadMoreJobs() {
       fetch(

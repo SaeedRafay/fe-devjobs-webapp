@@ -30,6 +30,31 @@
 
       <div class="jobText">
         <p>{{ job.description }}</p>
+        <h3>Requirements</h3>
+        <p>{{ job.requirements.content }}</p>
+        <ul>
+          <li v-for="(item, index) in job.requirements.items" :key="index">
+            {{ item }}
+          </li>
+        </ul>
+        <h3>What You Will Do</h3>
+        <p>{{ job.role.content }}</p>
+        <ol>
+          <li v-for="(item, index) in job.role.items" :key="index">
+            {{ item }}
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="jobStickyFooter">
+    <div class="jobDetail">
+      <div>
+        <h3>{{ job.position }}</h3>
+        <p>{{ job.company }}</p>
+      </div>
+      <div>
+        <button>Apply Now</button>
       </div>
     </div>
   </div>
@@ -43,8 +68,20 @@ export default {
   },
   data() {
     return {
-      job: this.$store.state.jobs.find((job) => job.id == this.jobId),
+      job: this.jobId
+        ? this.$store.state.jobs?.find((job) => job.id == this.jobId)
+        : {},
     };
+  },
+  created() {
+    if (!this.job) {
+      fetch(`http://localhost:3000/jobs?id=${this.jobId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          this.job = data[0];
+        })
+        .catch((err) => console.log(err.json));
+    }
   },
 };
 </script>
@@ -91,9 +128,10 @@ body.darkMode #app .jobDetail .jobCompany {
   color: var(--color-secondary-dark-grey);
 }
 #app .jobDescription {
-  padding: 48px;
+  padding: 48px 48px 18px;
   background: var(--color-secondary-white);
   border-radius: 6px;
+  margin-bottom: 180px;
 }
 body.darkMode #app .jobDescription {
   background: var(--color-primary-dark-blue);
@@ -121,5 +159,34 @@ body.darkMode #app .jobDescription {
 #app .jobDescription .jobText {
   margin-top: 30px;
   color: var(--color-secondary-dark-grey);
+}
+#app .jobDescription .jobText > h3 {
+  margin: 10px 0 20px;
+}
+#app .jobDescription .jobText > p {
+  margin: 10px 0 30px;
+}
+#app .jobDescription .jobText > ul,
+#app .jobDescription .jobText > ol {
+  margin: 10px 0 40px;
+}
+#app .jobStickyFooter {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: var(--color-secondary-white);
+}
+#app .jobStickyFooter .jobDetail {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  align-items: center;
+  padding: 26px 0;
+}
+body.darkMode #app .jobStickyFooter {
+  background: var(--color-primary-dark-blue);
+}
+#app .jobDetail Button {
+  float: right;
 }
 </style>
