@@ -4,16 +4,24 @@
       <img @click="$router.push('/')" src="../assets/logo.svg" />
     </div>
     <label class="modeSwitch">
-      <input type="checkbox" v-model="modeSwitch" />
+      <input type="checkbox" :checked="isDarkMode" @change="modeSwitch" />
       <span class="slider round"></span>
     </label>
   </header>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "LayoutHeader",
-  data() {
+  methods: {
+    ...mapActions(["modeCheck", "modeSwitch"]),
+  },
+  computed: mapGetters(["isDarkMode"]),
+  created() {
+    this.modeCheck();
+  },
+  /* data() {
     return {
       modeSwitch: false,
     };
@@ -26,7 +34,7 @@ export default {
         document.querySelector("body").classList.remove("darkMode");
       }
     },
-  },
+  }, */
 };
 </script>
 

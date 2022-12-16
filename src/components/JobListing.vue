@@ -2,40 +2,53 @@
   <JobSearch />
   <div class="jobListing">
     <JobCard
-      v-for="job in jobs"
+      v-for="job in allJobs"
       :key="job.id"
       :job="job"
       @click="$router.push('/job/' + job.id)"
     />
-    <button class="jobMore" @click="loadMoreJobs" :disabled="loadMoreDisabled">
+    <button
+      class="jobMore"
+      v-if="showPagination"
+      @click="fetchMoreJobs"
+      :disabled="loadMoreDisabled"
+    >
       Load More
     </button>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 import JobSearch from "./JobSearch.vue";
 import JobCard from "./JobCard.vue";
 
 export default {
   name: "JobListing",
+  methods: {
+    ...mapActions(["fetchJobs", "fetchMoreJobs"]),
+  },
   components: {
     JobSearch,
     JobCard,
   },
-  data() {
+  computed: mapGetters(["allJobs", "showPagination"]),
+  created() {
+    this.fetchJobs();
+  },
+  /* data() {
     return {
-      // jobs: this.$store.state.jobs,
+      jobs: this.$store.state.jobs,
       loadMoreDisabled: false,
       page: 0,
-      jobs: [],
+      // jobs: [],
     };
   },
   mounted() {
     fetch("http://localhost:3000/jobs?_page=1&_limit=5")
       .then((res) => res.json())
       .then((data) => {
-        this.jobs = data;
+        this.$store.state.jobs = data;
         this.page++;
       })
       .catch((err) => console.log(err.json));
@@ -54,7 +67,7 @@ export default {
       )
         .then((res) => res.json())
         .then((data) => {
-          this.jobs = this.jobs.concat(data);
+          this.$store.state.jobs = this.jobs.concat(data);
           this.page++;
 
           if (data.length < 5) {
@@ -66,7 +79,7 @@ export default {
         })
         .catch((err) => console.log(err.json));
     },
-  },
+  }, */
 };
 </script>
 

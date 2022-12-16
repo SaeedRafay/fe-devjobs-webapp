@@ -4,24 +4,42 @@
       type="text"
       class="searchTerm"
       placeholder="Filter by title, companies, expertise..."
+      @blur="filterByKeywords"
     />
     <input
       type="text"
       class="searchLocation"
       placeholder="Filter by location..."
+      @blur="filterByLocation"
     />
     <label class="searchFulltime"
       >Full Time Only
-      <input type="checkbox" />
+      <input type="checkbox" @change="filterFulltimeJobs" />
       <span class="checkmark"></span>
     </label>
-    <button>Search</button>
+    <button @click="filterJobs">Search</button>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "JobSearch",
+  methods: {
+    ...mapActions([
+      "filterJobs",
+      "filterFulltimeJobs",
+      "filterByKeywords",
+      "filterByLocation",
+    ]),
+    /* filterJobs() {
+      console.log("filterButton");
+      console.log(this.$store.state.jobs);
+      this.$store.state.jobs = this.$store.state.jobs.filter(
+        (job) => job.contract === "Full Time"
+      );
+    }, */
+  },
 };
 </script>
 
