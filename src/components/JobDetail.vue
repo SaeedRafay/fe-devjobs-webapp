@@ -75,7 +75,7 @@ export default {
   },
   created() {
     if (!this.job) {
-      fetch(`http://localhost:3000/jobs?id=${this.jobId}`)
+      fetch(`${process.env.VUE_APP_DEVJOBS_SERVER}/jobs?id=${this.jobId}`)
         .then((res) => res.json())
         .then((data) => {
           this.job = data[0];

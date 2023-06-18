@@ -36,50 +36,6 @@ export default {
   created() {
     this.fetchJobs();
   },
-  /* data() {
-    return {
-      jobs: this.$store.state.jobs,
-      loadMoreDisabled: false,
-      page: 0,
-      // jobs: [],
-    };
-  },
-  mounted() {
-    fetch("http://localhost:3000/jobs?_page=1&_limit=5")
-      .then((res) => res.json())
-      .then((data) => {
-        this.$store.state.jobs = data;
-        this.page++;
-      })
-      .catch((err) => console.log(err.json));
-  },
-  watch: {
-    jobs(newJobs, oldJobs) {
-      this.$store.state.jobs = oldJobs.concat(newJobs);
-    },
-  },
-  methods: {
-    loadMoreJobs() {
-      fetch(
-        "http://localhost:3000/jobs?_page=" +
-          parseInt(this.page + 1) +
-          "&_limit=5"
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          this.$store.state.jobs = this.jobs.concat(data);
-          this.page++;
-
-          if (data.length < 5) {
-            this.loadMoreDisabled = true;
-          }
-          if (data.length == 0) {
-            console.log("No more jobs founds");
-          }
-        })
-        .catch((err) => console.log(err.json));
-    },
-  }, */
 };
 </script>
 

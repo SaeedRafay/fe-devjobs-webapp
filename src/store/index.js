@@ -34,7 +34,7 @@ const actions = {
     }
   },
   async fetchJobs({ commit }) {
-    fetch('http://localhost:3000/jobs?_page=1&_limit=7&')
+    fetch(`${process.env.VUE_APP_DEVJOBS_SERVER}/jobs?_page=1&_limit=7&`)
       .then((res) => res.json())
       .then((data) => {
         commit('setJobs', data)
@@ -47,7 +47,7 @@ const actions = {
       .catch((err) => console.log(err.json))
   },
   async fetchMoreJobs({ commit }) {
-    let paginatedURL = `http://localhost:3000/jobs?_page=${
+    let paginatedURL = `${process.env.VUE_APP_DEVJOBS_SERVER}/jobs?_page=${
       state.pageNum + 1
     }&_limit=7&`
     if (state.fulltimeOnly) {
@@ -69,7 +69,7 @@ const actions = {
       .catch((err) => console.log(err.json))
   },
   async filterJobs({ commit, dispatch }) {
-    let filterURL = `http://localhost:3000/jobs?_page=1&_limit=7&`
+    let filterURL = `${process.env.VUE_APP_DEVJOBS_SERVER}/jobs?_page=1&_limit=7&`
     if (state.fulltimeOnly) {
       filterURL += `contract=Full%20Time&`
     }
